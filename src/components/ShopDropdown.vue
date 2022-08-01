@@ -40,10 +40,11 @@
 import { FireOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
 import { reactive, ref } from 'vue';
 import { HotService } from './hot-service'
+
 const selectedKeys2 = ref<string[]>(['1']);
 const openKeys = ref<string[]>(['sub1']);
 
-let hotservices: HotService = new HotService()
+let hotservices: HotService = new HotService();
 
 let hots = hotservices.getHotServiceData();
 

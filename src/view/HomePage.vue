@@ -27,31 +27,10 @@
           <shop-dropdown />
 
         </a-layout-sider>
-        <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
-          <a-carousel arrows>
-            <template #prevArrow>
-              <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
-                <left-circle-outlined />
-              </div>
-            </template>
-            <template #nextArrow>
-              <div class="custom-slick-arrow" style="right: 10px">
-                <right-circle-outlined />
-              </div>
-            </template>
-            <div>
-              <h3>1</h3>
-            </div>
-            <div>
-              <h3>2</h3>
-            </div>
-            <div>
-              <h3>3</h3>
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-          </a-carousel>
+        <a-layout-content 
+        :style="{ padding: '10px 66px', minHeight: '320px'}"
+        >
+          <carousel />
         </a-layout-content>
       </a-layout>
     </a-layout-content>
@@ -61,9 +40,11 @@
   </a-layout>
 </template>
 <script setup lang="ts">
-import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue';
+
 import { ref } from 'vue';
 import ShopDropdown from '../components/ShopDropdown.vue';
+import Carousel from '../components/Carousel.vue';
+
 const checked = ref<boolean>(false);
 const selectedKeys1 = ref<string[]>(['2']);
 
@@ -84,36 +65,5 @@ const selectedKeys1 = ref<string[]>(['2']);
 
 .site-layout-background {
   background: #fff;
-}
-
-/* For demo */
-.ant-carousel :deep(.slick-slide) {
-  text-align: center;
-  height: 160px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-}
-
-.ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
-  width: 25px;
-  height: 25px;
-  font-size: 25px;
-  color: #fff;
-  background-color: rgba(31, 45, 61, 0.11);
-  opacity: 0.3;
-  z-index: 1;
-}
-
-.ant-carousel :deep(.custom-slick-arrow:before) {
-  display: none;
-}
-
-.ant-carousel :deep(.custom-slick-arrow:hover) {
-  opacity: 0.5;
-}
-
-.ant-carousel :deep(.slick-slide h3) {
-  color: #fff;
 }
 </style>
