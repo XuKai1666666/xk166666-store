@@ -8,7 +8,7 @@
                     <user-outlined type="user" />
                 </template>
                 <template #suffix>
-                    <a-tooltip title="不能含有特殊字符，不得超过18位">
+                    <a-tooltip title="必填项">
                         <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
                     </a-tooltip>
                 </template>
@@ -21,6 +21,11 @@
                 <template #prefix>
                     <phone-outlined type="phone" />
                 </template>
+                <template #suffix>
+                    <a-tooltip title="必填项">
+                        <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+                    </a-tooltip>
+                </template>
             </a-input>
             <br v-if="userservice.CheckTelephone(telephone)" />
             <br v-if="userservice.CheckTelephone(telephone)" />
@@ -29,6 +34,7 @@
                 <template #prefix>
                     <mail-outlined type="email" />
                 </template>
+
             </a-input>
             <br v-if="userservice.CheckEmail(email)" />
             <br v-if="userservice.CheckEmail(email)" />
@@ -47,9 +53,10 @@
                     <lock-outlined type="lock" />
                 </template>
             </a-input-password>
-            <br/>
-            <br/>
-            <button style="width: 100%; color: #7cb305;" @click="setUser(username, password1, telephone, email)"><strong>注册</strong></button>
+            <br />
+            <br />
+            <button style="width: 100%; color: #7cb305;"
+                @click="setUser(username, password1, telephone, email)"><strong>注册</strong></button>
         </div>
     </div>
 </template>

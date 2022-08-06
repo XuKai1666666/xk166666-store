@@ -15,7 +15,8 @@ export class UserService {
         console.log('telephone：' + this.CheckTelephone(telephone))
         console.log('username：' + this.CheckUsername(username))
         console.log('第一次密码：' + this.password1 + '第二次密码：' + this.password2 + this.CheckPassword(this.password1, this.password2))
-        if (this.CheckUsername(username) && this.CheckTelephone(telephone) && this.CheckEmail(email) && this.CheckPassword(this.password1, this.password2)) {
+        if (username != '' && this.password1 != '' && telephone != undefined
+            && this.CheckUsername(username) && this.CheckTelephone(telephone) && this.CheckEmail(email) && this.CheckPassword(this.password1, this.password2)) {
             this.users.push({
                 username: username,
                 password: password,
@@ -26,8 +27,10 @@ export class UserService {
             console.log(this.users)
             console.log('---------')
             alert('注册成功！！！')
+        } else {
+            alert('请输入正确信息！！！')
         }
-        alert('请输入正确信息！！！')
+
     }
 
     CheckUsername(username: string) {
