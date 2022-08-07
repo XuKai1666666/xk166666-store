@@ -56,7 +56,12 @@
             <br />
             <br />
             <button style="width: 100%; color: #7cb305;"
-                @click="setUser(username, password1, telephone, email)"><strong>注册</strong></button>
+                @click="setUser(username, password1, telephone, email)">
+                <strong>注册</strong>
+            </button>
+            <button style="width: 100%;  margin-top: 10px;"
+                ><router-link to="/signIn"><strong>登录</strong></router-link>
+            </button>
         </div>
     </div>
 </template>
@@ -71,7 +76,6 @@ const telephone = ref<number>();
 const email = ref<string>('');
 
 let userservice: UserService = new UserService();
-const uE = ref<string>(userservice.usernameError)
 function setUser(username: string, password: string, telephone: number, email: string) {
     userservice.password1 = password1.value;
     userservice.password2 = password2.value;
@@ -79,7 +83,7 @@ function setUser(username: string, password: string, telephone: number, email: s
     // console.log(userservice)
 }
 </script>
-<style>
+<style scoped>
 .container {
     width: 600px;
     height: 500px;
