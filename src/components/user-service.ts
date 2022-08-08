@@ -2,10 +2,10 @@ import { User } from "./user";
 export class UserService {
     password1: string = '';
     password2: string = '';
-    usernameError: string = '';
-    users: User[] = [
+    users: Array<User> = [
         { username: 'admin', password: 'admin', telephone: 13665801524, email: '2684024189@qq.com' },
     ];
+    localStorageUser: Array<User> = this.SetlocalStorageUser(this.users)
     //注册
     Register(username: string, password: string, telephone: number, email: string) {
         // console.log('telephone数据类型')
@@ -15,7 +15,7 @@ export class UserService {
         console.log('telephone：' + this.CheckTelephone(telephone))
         console.log('username：' + this.CheckUsername(username))
         console.log('第一次密码：' + this.password1 + '第二次密码：' + this.password2 + this.CheckPassword(this.password1, this.password2))
-        if (username != '' && this.password1 != '' && telephone != undefined
+        if (username != '' && this.password1 != '' && telephone != undefined && this.IsUserExists(username, this.users)
             && this.CheckUsername(username) && this.CheckTelephone(telephone) && this.CheckEmail(email) && this.CheckPassword(this.password1, this.password2)) {
             this.users.push({
                 username: username,
@@ -27,12 +27,29 @@ export class UserService {
             console.log(this.users)
             console.log('---------')
             alert('注册成功！！！')
+            this.SetlocalStorageUser([{
+                username: username,
+                password: password,
+                telephone: telephone,
+                email: email
+            }])
         } else {
             alert('请输入正确信息！！！')
         }
-
+    }
+    SetlocalStorageUser(users: Array<User>) {
+        window.localStorage.users = JSON.stringify(this.users || users)
+        return eval('(' + this.localStorageUser + ')')
     }
 
+    IsUserExists(username: string, users: Array<User>) {
+        if (users.some(item => item.username === username)) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
     CheckUsername(username: string) {
         var pattern = /^[\u4E00-\u9FA5A-Za-z0-9_]+$/,
             str = username;

@@ -43,9 +43,10 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { UserService } from '../components/user-service';
-let userservice: UserService = new UserService();
-console.log(userservice.users)
+// import { UserService } from '../components/user-service';
+// let userservice: UserService = new UserService();
+let localStorageUser = eval('(' + localStorage.getItem("users") + ')');
+console.log(localStorageUser)
 interface FormState {
     username: string;
     password: string;
@@ -57,17 +58,17 @@ const formState = reactive<FormState>({
     remember: true,
 });
 const onFinish = (values: any) => {
-    if (userservice.users.some(item => item.username === formState.username) ) {
-        let usernameindex = userservice.users.findIndex(item => item.username === formState.username)
-       
-        if(userservice.users[usernameindex].password===formState.password){
-             console.log('Success:', values)
-             alert('登录成功！！！')
+    if (localStorageUser.some(item => item.username === formState.username)) {
+        let usernameindex = localStorageUser.findIndex(item => item.username === formState.username)
+
+        if (localStorageUser[usernameindex].password === formState.password) {
+            console.log('Success:', values)
+            alert('登录成功！！！')
         }
-        else{
+        else {
             alert('密码错误')
         }
-    }else{
+    } else {
         alert('用户不存在！！！')
     }
 };
