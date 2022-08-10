@@ -43,8 +43,9 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-// import { UserService } from '../components/user-service';
-// let userservice: UserService = new UserService();
+import { UserService } from '../components/user-service';
+let userservice: UserService = new UserService();
+userservice.InitializeLocalStorageUser();
 let localStorageUser = eval('(' + localStorage.getItem("users") + ')');
 console.log(localStorageUser)
 interface FormState {

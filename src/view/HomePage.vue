@@ -4,7 +4,7 @@
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys1" theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
         <a-menu-item key="1">
-            <router-link to="/register">注册</router-link>
+          <router-link to="/register">注册</router-link>
         </a-menu-item>
         <a-menu-item key="2">
           <router-link to="/signIn">登录</router-link>
@@ -45,7 +45,9 @@
 import { ref } from 'vue';
 import ShopDropdown from '../components/ShopDropdown.vue';
 import Carousel from '../components/Carousel.vue';
-
+import { UserService } from '../components/user-service';
+let userservice: UserService = new UserService();
+userservice.InitializeLocalStorageUser();
 const checked = ref<boolean>(false);
 const selectedKeys1 = ref<string[]>(['2']);
 
